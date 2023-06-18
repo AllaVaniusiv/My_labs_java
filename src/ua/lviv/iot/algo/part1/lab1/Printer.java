@@ -11,14 +11,15 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Printer {
+public abstract class Printer {
     private String model;
     private String type;
     private boolean isColor;
     private boolean isDuplex;
     private int paperTrayCapacity;
     private int paperCount;
-    private static Printer defaultPrinter = new Printer();
+    private double inkLevel;
+    private static Printer defaultPrinter;
 
     public static Printer getInstance() {
         return defaultPrinter;
@@ -41,16 +42,7 @@ public class Printer {
         }
     }
 
-    public static void main(String[] args) {
-        Printer printer1 = new Printer();
-        Printer printer2 = new Printer("HP LaserJet", "laser", true, true, 250, 50);
-        Printer printer3 = Printer.getInstance();
-        Printer printer4 = Printer.getInstance();
+    public abstract int getRemainingPagesCount();
 
-        Printer[] printers = {printer1, printer2, printer3, printer4};
 
-        for (Printer printer : printers) {
-            System.out.println(printer);
-        }
-    }
 }

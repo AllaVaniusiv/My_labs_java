@@ -1,1 +1,1 @@
-# My_lab1_java
+# My_lab2_java
