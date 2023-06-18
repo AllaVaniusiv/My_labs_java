@@ -1,4 +1,4 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.lab1.modules;
 
 
 import lombok.AllArgsConstructor;
@@ -19,6 +19,15 @@ public final class LaserPrinter extends Printer {
     @Override
     public int getRemainingPagesCount() {
         return tonerPagesCount - printedPagesCount;
+    }
+
+    public String getHeaders() {
+        return super.getHeaders() + ", tonerPagesCount , printedPagesCount";
+    }
+
+    public String toCSV() {
+        return super.toCSV() + "," + tonerPagesCount + "," + printedPagesCount;
+
     }
 
 }

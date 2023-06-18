@@ -1,7 +1,10 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.lab1.modules;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ua.lviv.iot.algo.part1.lab1.modules.LaserPrinter;
+import ua.lviv.iot.algo.part1.lab1.modules.PhotoPrinter;
+import ua.lviv.iot.algo.part1.lab1.modules.Printer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -128,6 +131,19 @@ class PrinterTest {
         printer.loadPaper(50);
         printer.print(-5);
         assertEquals(200, printer.getRemainingPagesCount());
+    }
+    @Test
+    public void testGetHeaders() {
+        PhotoPrinter printer = new PhotoPrinter( "laser" , 70 , true , 25.0);
+        String expectedHeaders = "model,type,isColor,isDuplex,paperTrayCapacity,paperCount,inkLevel, type , resolution , isColor , inkLevel";
+        assertEquals(expectedHeaders, printer.getHeaders());
+    }
+
+    @Test
+    public void testToCSV() {
+        PhotoPrinter printer = new PhotoPrinter( "laser" , 90 , true , 30.0);
+        String expectedCSV = "null,null,false,false,0,0,0.0,laser,90,true,30.0";
+        assertEquals(expectedCSV, printer.toCSV());
     }
 
 }

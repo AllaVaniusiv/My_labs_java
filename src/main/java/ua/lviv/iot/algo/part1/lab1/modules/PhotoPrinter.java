@@ -1,4 +1,4 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.lab1.modules;
 
 
 import lombok.AllArgsConstructor;
@@ -21,5 +21,14 @@ public final class PhotoPrinter extends Printer {
     @Override
     public int getRemainingPagesCount() {
         return 0;
+    }
+
+    public String getHeaders() {
+        return super.getHeaders() + ", type , resolution , isColor , inkLevel";
+    }
+
+    public String toCSV() {
+        return super.toCSV() + "," + type + "," + resolution + "," + isColor + "," + inkLevel;
+
     }
 }

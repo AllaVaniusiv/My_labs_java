@@ -1,8 +1,10 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.lab1.modules;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ua.lviv.iot.algo.part1.lab1.modules.InkjetPrinter;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class InkjetPrinterTest {
@@ -41,5 +43,18 @@ public class InkjetPrinterTest {
         assertEquals(70, printer.getYellowInkLevel(), 0.001);
         assertEquals("Pigment", printer.getBlackInkType());
         assertEquals(80, printer.getBlackInkLevel(), 0.001);
+    }
+    @Test
+    public void testGetHeaders() {
+        InkjetPrinter printer = new InkjetPrinter( "cyan", 50, "magenta", 50, "yellow", 50, "black", 50);
+        String expectedHeaders = "model,type,isColor,isDuplex,paperTrayCapacity,paperCount,inkLevel, cyanInkType,cyanInkLevel,magentaInkType,magentaInkLevel,yellowInkType ,yellowInkLevel,blackInkType,blackInkLevel";
+        assertEquals(expectedHeaders, printer.getHeaders());
+    }
+
+    @Test
+    public void testToCSV() {
+        InkjetPrinter printer = new InkjetPrinter( "cyan", 50, "magenta", 50, "yellow", 50, "black", 50);
+        String expectedCSV = "null,null,false,false,0,0,0.0,cyan,50.0,magenta,50.0,yellow,50.0,black,50.0";
+        assertEquals(expectedCSV, printer.toCSV());
     }
 }
