@@ -1,7 +1,11 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.lab1.manager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ua.lviv.iot.algo.part1.lab1.modules.InkjetPrinter;
+import ua.lviv.iot.algo.part1.lab1.modules.LaserPrinter;
+import ua.lviv.iot.algo.part1.lab1.modules.PhotoPrinter;
+import ua.lviv.iot.algo.part1.lab1.modules.ThreeDPrinter;
 
 import static org.junit.jupiter.api.Assertions.*;
 

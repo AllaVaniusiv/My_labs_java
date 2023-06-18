@@ -1,4 +1,6 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.lab1.writer;
+
+import ua.lviv.iot.algo.part1.lab1.modules.Printer;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,7 +9,7 @@ import java.util.List;
 
 public class PrinterWriter {
 
-    public void writeToFile(List<Printer> printers) throws IOException {
+    public final void writeToFile(final List<Printer> printers) throws IOException {
         if (printers.isEmpty()) {
             System.out.println("Список принтерів порожній, немає чого записувати в файл!");
             return;
@@ -22,7 +24,7 @@ public class PrinterWriter {
     }
 
 
-    public void sortedWriteToFile(List<Printer> printers) throws IOException {
+    public final void sortedWriteToFile(final List<Printer> printers) throws IOException {
         File csvOutputFile = new File("sorted_printer.csv");
         try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
             Printer printerType = printers.get(0);

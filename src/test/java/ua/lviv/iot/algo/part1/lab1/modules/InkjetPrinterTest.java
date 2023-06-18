@@ -1,8 +1,10 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.lab1.modules;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ua.lviv.iot.algo.part1.lab1.modules.InkjetPrinter;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class InkjetPrinterTest {

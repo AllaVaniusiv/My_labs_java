@@ -1,8 +1,15 @@
-package ua.lviv.iot.algo.part1.lab1;
+package ua.lviv.iot.algo.part1.lab1.writer;
+
 
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import ua.lviv.iot.algo.part1.lab1.modules.Printer;
+import ua.lviv.iot.algo.part1.lab1.modules.InkjetPrinter;
+import ua.lviv.iot.algo.part1.lab1.modules.LaserPrinter;
+import ua.lviv.iot.algo.part1.lab1.modules.PhotoPrinter;
+import ua.lviv.iot.algo.part1.lab1.modules.ThreeDPrinter;
+
 
 import java.io.*;
 import java.nio.file.Files;
@@ -15,14 +22,23 @@ import static org.junit.Assert.*;
 
 
 public class PrinterWriterTest {
-    private final File actualFile = new File("printers.csv");
-    ;
+    public static final String FILE_TO_WRITE = "printers.csv";
+    public static final String SORTED_FILE = "sorted.csv";
+    private final File sortedFile = new File(SORTED_FILE);
+    private final File actualFile = new File(FILE_TO_WRITE);
     private final File expectedFile = new File("expected.csv");
+
     private static List<Printer> printers;
+
+    @AfterEach
+    public void tearDown() throws IOException {
+        Files.deleteIfExists(Path.of(FILE_TO_WRITE));
+    }
 
 
     @Test
     public void writeToFileSuccess() throws IOException {
+        PrinterWriter printerWriter = new PrinterWriter();
         List<Printer> printers = new ArrayList<>();
         printers.add(new InkjetPrinter("cyan", 9,
                 "magenta",
@@ -43,6 +59,7 @@ public class PrinterWriterTest {
         printers.add(new ThreeDPrinter("laser", 5,
                 true));
 
+        printerWriter.writeToFile(printers);
         assertTrue(Files.exists(actualFile.toPath()));
         assertEquals(Files.readAllLines(expectedFile.toPath()),
                 Files.readAllLines(actualFile.toPath()));
@@ -55,21 +72,20 @@ public class PrinterWriterTest {
 
         printerWriter.writeToFile(printers);
 
-        File file = new File("printers.csv");
+        File file = new File(FILE_TO_WRITE);
         assertTrue(file.exists());
     }
 
     @Test
-    public void writeToFileExistingFile() throws IOException {
-        FileWriter fileWriter = new FileWriter("printers.csv");
-        fileWriter.write("printers");
-        fileWriter.close();
-
+    public void testFileToWrite() throws IOException {
+        FileWriter writer = new FileWriter(FILE_TO_WRITE);
+        writer.write("printers");
+        writer.close();
+        writeToFileSuccess();
     }
 
     @Test
     public void testSortedWritesToFile() throws IOException {
-        // Arrange
         PrinterWriter printerWriter = new PrinterWriter();
         List<Printer> printers = new ArrayList<>();
         printers.add(new InkjetPrinter("cyan", 9, "magenta",
@@ -101,8 +117,4 @@ public class PrinterWriterTest {
         }
     }
 
-    @AfterEach
-    public void tearDown() throws IOException {
-        Files.deleteIfExists(Path.of("printers.csv"));
-    }
 }
