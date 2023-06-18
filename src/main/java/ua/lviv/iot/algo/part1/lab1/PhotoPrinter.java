@@ -12,7 +12,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString(callSuper = true)
-public class PhotoPrinter extends Printer {
+public final class PhotoPrinter extends Printer {
     private String type;
     private int resolution;
     private boolean isColor;

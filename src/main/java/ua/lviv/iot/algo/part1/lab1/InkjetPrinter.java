@@ -13,7 +13,7 @@ import lombok.ToString;
 @Setter
 
 @ToString(callSuper = true)
-public class InkjetPrinter extends Printer {
+public final class InkjetPrinter extends Printer {
     private String cyanInkType;
     private double cyanInkLevel;
     private String magentaInkType;
@@ -30,6 +30,7 @@ public class InkjetPrinter extends Printer {
         int remainingMagentaPages = (int) Math.floor(magentaInkLevel / REQUIRED_COLOUR_PER_PAGE);
         int remainingYellowPages = (int) Math.floor(yellowInkLevel / REQUIRED_COLOUR_PER_PAGE);
         int remainingBlackPages = (int) Math.floor(blackInkLevel / REQUIRED_COLOUR_PER_PAGE);
-        return Math.min(Math.min(remainingCyanPages, remainingMagentaPages), Math.min(remainingYellowPages, remainingBlackPages));
+        return Math.min(Math.min(remainingCyanPages, remainingMagentaPages),
+                Math.min(remainingYellowPages, remainingBlackPages));
     }
 }
