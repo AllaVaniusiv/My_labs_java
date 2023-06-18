@@ -11,14 +11,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
-public class LaserPrinter extends Printer {
-    private int tonerPagesCount;
-    private int printedPagesCount;
+@ToString(callSuper = true)
+public final class ThreeDPrinter extends Printer {
+    private String type;
+    private int printingSpeed;
+    private boolean isColorPrinter;
 
     @Override
     public int getRemainingPagesCount() {
-        return tonerPagesCount - printedPagesCount;
+        return 0;
     }
 
 }
