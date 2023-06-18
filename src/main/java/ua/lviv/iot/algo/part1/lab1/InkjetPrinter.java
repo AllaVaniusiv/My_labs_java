@@ -33,4 +33,12 @@ public final class InkjetPrinter extends Printer {
         return Math.min(Math.min(remainingCyanPages, remainingMagentaPages),
                 Math.min(remainingYellowPages, remainingBlackPages));
     }
+    public String getHeaders() {
+        return super.getHeaders() + ", cyanInkType,cyanInkLevel,magentaInkType,magentaInkLevel,yellowInkType ,yellowInkLevel,blackInkType,blackInkLevel";
+    }
+
+    public String toCSV() {
+        return super.toCSV() + "," + cyanInkType + "," + cyanInkLevel + "," + magentaInkType + "," + magentaInkLevel + "," + yellowInkType + "," + yellowInkLevel + "," + blackInkType + "," + blackInkLevel;
+
+    }
 }

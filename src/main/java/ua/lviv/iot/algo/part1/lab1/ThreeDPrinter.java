@@ -21,5 +21,12 @@ public final class ThreeDPrinter extends Printer {
     public int getRemainingPagesCount() {
         return 0;
     }
+    public String getHeaders() {
+        return super.getHeaders() + ",type,printingSpeed,isColorPrinter";
+    }
+    public String toCSV() {
+        return super.toCSV() + "," + type + "," + printingSpeed + "," + isColorPrinter ;
+
+    }
 
 }

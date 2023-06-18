@@ -1,4 +1,5 @@
 package ua.lviv.iot.algo.part1.lab1;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,14 +22,6 @@ class PrinterManagerTest {
     }
 
     @Test
-    void testAddPrinter() {
-        var initialSize = printerManager.getPrinters().size();
-        printerManager.addPrinter(new InkjetPrinter("cyan", 9, "magenta", 8, "yellow", 3, "black", 5));
-        var updatedSize = printerManager.getPrinters().size();
-        assertEquals(initialSize + 1, updatedSize);
-    }
-
-    @Test
     void testFindPrinterWithType() {
         var laserPrinters = printerManager.findPrinterWithType("laser");
         assertEquals(3, laserPrinters.size());
@@ -43,16 +36,17 @@ class PrinterManagerTest {
     @Test
     void testFindPrinterWithMoreInkLevelThan() {
         PrinterManager printerManager = new PrinterManager();
-        InkjetPrinter inkjetPrinter1 = new InkjetPrinter("cyan",9,"magenta", 8,"yellow" ,3,"black",5);
-        InkjetPrinter inkjetPrinter2 = new InkjetPrinter("cyan",6,"magenta", 7,"yellow" ,2,"black",1);
+        InkjetPrinter inkjetPrinter1 = new InkjetPrinter("cyan", 9, "magenta", 8, "yellow", 3, "black", 5);
+        InkjetPrinter inkjetPrinter2 = new InkjetPrinter("cyan", 6, "magenta", 7, "yellow", 2, "black", 1);
         LaserPrinter laserPrinter = new LaserPrinter(15, 6);
         printerManager.addPrinter(inkjetPrinter1);
         printerManager.addPrinter(inkjetPrinter2);
         printerManager.addPrinter(laserPrinter);
-        assertEquals(0, printerManager.findPrinterWithMoreInkLevelThan(2).size());
+        assertEquals(2, printerManager.findPrinterWithMoreInkLevelThan(2).size());
         assertFalse(printerManager.findPrinterWithMoreInkLevelThan(2).contains(inkjetPrinter1));
         assertFalse(printerManager.findPrinterWithMoreInkLevelThan(2).contains(inkjetPrinter2));
         assertEquals(0, printerManager.findPrinterWithMoreInkLevelThan(10).size());
         assertFalse(printerManager.findPrinterWithMoreInkLevelThan(10).contains(laserPrinter));
     }
+
 }

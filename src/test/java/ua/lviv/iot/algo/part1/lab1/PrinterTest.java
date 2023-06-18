@@ -129,5 +129,18 @@ class PrinterTest {
         printer.print(-5);
         assertEquals(200, printer.getRemainingPagesCount());
     }
+    @Test
+    public void testGetHeaders() {
+        PhotoPrinter printer = new PhotoPrinter( "laser" , 70 , true , 25.0);
+        String expectedHeaders = "model,type,isColor,isDuplex,paperTrayCapacity,paperCount,inkLevel, type , resolution , isColor , inkLevel";
+        assertEquals(expectedHeaders, printer.getHeaders());
+    }
+
+    @Test
+    public void testToCSV() {
+        PhotoPrinter printer = new PhotoPrinter( "laser" , 90 , true , 30.0);
+        String expectedCSV = "null,null,false,false,0,0,0.0,laser,90,true,30.0";
+        assertEquals(expectedCSV, printer.toCSV());
+    }
 
 }

@@ -77,5 +77,18 @@ public final class LaserPrinterTest {
         assertEquals(5, printer.getTonerPagesCount());
         assertEquals(0, printer.getPrintedPagesCount());
     }
+    @Test
+    public void testGetHeaders() {
+        LaserPrinter printer = new LaserPrinter( 200 , 70);
+        String expectedHeaders = "model,type,isColor,isDuplex,paperTrayCapacity,paperCount,inkLevel, tonerPagesCount , printedPagesCount";
+        assertEquals(expectedHeaders, printer.getHeaders());
+    }
+
+    @Test
+    public void testToCSV() {
+        LaserPrinter printer = new LaserPrinter( 100 , 50);
+        String expectedCSV = "null,null,false,false,0,0,0.0,100,50";
+        assertEquals(expectedCSV, printer.toCSV());
+    }
 
 }

@@ -43,6 +43,13 @@ public abstract class Printer {
     }
 
     public abstract int getRemainingPagesCount();
+    public String getHeaders() {
+        return "model,type,isColor,isDuplex,paperTrayCapacity,paperCount,inkLevel";
+    }
+
+    public String toCSV() {
+        return model + "," + type + "," + isColor + "," + isDuplex + "," + paperTrayCapacity + "," + paperCount + "," + inkLevel;
+    }
 
 
 }

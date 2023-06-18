@@ -20,5 +20,12 @@ public final class LaserPrinter extends Printer {
     public int getRemainingPagesCount() {
         return tonerPagesCount - printedPagesCount;
     }
+    public String getHeaders() {
+        return super.getHeaders() + ", tonerPagesCount , printedPagesCount";
+    }
+    public String toCSV() {
+        return super.toCSV() + "," + tonerPagesCount + "," + printedPagesCount ;
+
+    }
 
 }
